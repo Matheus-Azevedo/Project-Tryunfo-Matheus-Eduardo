@@ -14,7 +14,7 @@ export class Form extends Component {
       cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo,
-      isSaveButtonDisabled,
+      isSaveButtonDisabled, hasTrunfo,
       onInputChange, onSaveButtonClick,
     } = this.props;
     return (
@@ -43,6 +43,7 @@ export class Form extends Component {
         />
         <TrunfoInput
           cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           onInputChange={ onInputChange }
         />
         <Button

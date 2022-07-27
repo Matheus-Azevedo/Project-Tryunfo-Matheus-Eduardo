@@ -46,4 +46,13 @@ export default class Card extends Component {
   }
 }
 
-Card.propTypes = typeForms;
+Card.propTypes = (
+  typeForms.cardRare,
+  typeForms.cardAttr1,
+  typeForms.cardAttr2,
+  typeForms.cardAttr3,
+  typeForms.cardDescription,
+  typeForms.cardImage,
+  typeForms.cardRare,
+  typeForms.cardTrunfo
+);
