@@ -1,7 +1,7 @@
 import React from 'react';
-import typeForms from './components/TypeForms';
 import Card from './components/Card';
 import { Form } from './components/Form';
+import CardListSaved from './components/CardListSaved';
 
 class App extends React.Component {
   state = {
@@ -83,12 +83,23 @@ class App extends React.Component {
     });
   }
 
+  removeThisCard = ({ target }) => {
+    const { arrayOfCards, hasTrunfo } = this.state;
+    const name = target.parentNode.firstChild.id;
+    const array = arrayOfCards.filter((card) => (
+      card.cardName !== name
+    ));
+    this.setState({ arrayOfCards: array });
+    if (hasTrunfo) this.setState({ hasTrunfo: false });
+  };
+
   render() {
     const {
       cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo,
       hasTrunfo, isSaveButtonDisabled,
+      arrayOfCards,
     } = this.state;
     return (
       <section>
@@ -120,6 +131,12 @@ class App extends React.Component {
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
           />
+          <section>
+            <CardListSaved
+              arrayOfCards={ arrayOfCards }
+              removeThisCard={ this.removeThisCard }
+            />
+          </section>
         </main>
       </section>
     );
@@ -127,15 +144,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-App.propTypes = (
-  typeForms.cardRare,
-  typeForms.cardAttr1,
-  typeForms.cardAttr2,
-  typeForms.cardAttr3,
-  typeForms.cardDescription,
-  typeForms.cardImage,
-  typeForms.cardRare,
-  typeForms.cardTrunfo,
-  typeForms.isSaveButtonDisabled
-);
